@@ -1,14 +1,9 @@
 # -*- coding: utf-8 -*-
 
-#載入LineBot所需要的套件
+# 載入LineBot所需要的套件
 from flask import Flask, request, abort
-
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import (
-    InvalidSignatureError
-)
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 
 app = Flask(__name__)
@@ -19,7 +14,11 @@ line_bot_api = LineBotApi('hX3xmKllxDvn9vCe2bKkDKR/P8nXVcuu3/YVwIIbnOQWUHmdDGPPI
 # 必須放上自己的Channel Secret
 handler = WebhookHandler('4278a1f8dd7606599872d3b45358aab1')
 
-line_bot_api.push_message('Ue6f400bef64011aedf7f463f05485a7e', TextSendMessage(text='你可以開始了'))
+# 發送 Push Message
+line_bot_api.push_message(
+    'Ue6f400bef64011aedf7f463f05485a7e',
+    TextSendMessage(text='您好,目前時間是 2024/10/10 14:00 ，請問需要什麼服務呢?')
+)
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -39,14 +38,23 @@ def callback():
 
     return 'OK'
 
-#訊息傳遞區塊
-##### 基本上程式編輯都在這個function #####
+# 訊息傳遞區塊
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text=event.message.text)
-    line_bot_api.reply_message(event.reply_token,message)
+    user_message = event.message.text
 
-#主程式
+    if user_message == "天氣":
+        reply_message = "請稍等，我幫您查詢天氣資訊！"
+    else:
+        reply_message = "很抱歉，我目前無法理解這個內容。"
+
+    # 回覆訊息
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=reply_message)
+    )
+
+# 主程式
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
