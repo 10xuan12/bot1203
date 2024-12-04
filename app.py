@@ -97,13 +97,13 @@ def handle_message(event):
             preview_image_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL3K1L1IArBJSNdV7O27-oh-aB6vAylFy3zg&s"  # 替換為真實預覽圖連結
         )
 
-   elif user_message == "今天是我的生日":
-    image_message = ImageSendMessage(
-        original_content_url="https://img.lovepik.com/free-template/20210106/bg/d4e0b6dd02a87.png_detail.jpg!detail808",
-        preview_image_url="https://img.lovepik.com/free-template/20210106/bg/d4e0b6dd02a87.png_detail.jpg!detail808"
-    )
-    text_message = TextSendMessage(text="生日快樂！希望你有個美好的一天 🎉🎂")
-    reply_message = [image_message, text_message]
+    elif user_message == "今天是我的生日":
+        image_message = ImageSendMessage(
+            original_content_url="https://img.lovepik.com/free-template/20210106/bg/d4e0b6dd02a87.png_detail.jpg!detail808",
+            preview_image_url="https://img.lovepik.com/free-template/20210106/bg/d4e0b6dd02a87.png_detail.jpg!detail808"
+        )
+        text_message = TextSendMessage(text="生日快樂！希望你有個美好的一天 🎉🎂")
+        reply_message = [image_message, text_message]
         
     else:
         reply_message = TextSendMessage(text="抱歉，沒有東西。")
