@@ -7,7 +7,6 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 from datetime import datetime
 import pytz
-from linebot.models import *
 import re
 app = Flask(__name__)
 
@@ -72,12 +71,12 @@ def handle_message(event):
 
     elif user_message == "熱門音樂":  # 傳送熱門音樂音訊
         reply_message = AudioSendMessage(
-            original_content_url="https://www.youtube.com/watch?v=HfWLgELllZs&list=RDHfWLgELllZs&start_radio=1",  
+            original_content_url="https://drive.google.com/uc?export=download&id=1J2MmpK7bb4S-HsHx4yC0YeAuoZQhnOag",  
             duration=203000  # 音訊時長 (毫秒)
         )
     elif user_message == "放鬆音樂":  # 傳送放鬆音樂音訊
         reply_message = AudioSendMessage(
-            original_content_url="https://www.youtube.com/watch?v=T6eK-2OQtew&list=RDHfWLgELllZs&index=2",  
+            original_content_url="https://drive.google.com/uc?export=download&id=1LgcJ2bjD8DFakbWY4w6wo8cKyXISuewG",  
             duration=235000  # 音訊時長 (毫秒)
         )
      
@@ -98,18 +97,18 @@ def handle_message(event):
             preview_image_url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL3K1L1IArBJSNdV7O27-oh-aB6vAylFy3zg&s"  # 替換為真實預覽圖連結
         )
 
-    elif user_message == "今天是我的生日":
-        image_message = ImageSendMessage(
-            original_content_url="https://img.lovepik.com/free-template/20210106/bg/d4e0b6dd02a87.png_detail.jpg!detail808",
-            preview_image_url="https://img.lovepik.com/free-template/20210106/bg/d4e0b6dd02a87.png_detail.jpg!detail808"
-        )
-        text_message = TextSendMessage(text="生日快樂！希望你有個美好的一天 🎉🎂")
-        reply_message = [image_message, text_message]
+   elif user_message == "今天是我的生日":
+    image_message = ImageSendMessage(
+        original_content_url="https://img.lovepik.com/free-template/20210106/bg/d4e0b6dd02a87.png_detail.jpg!detail808",
+        preview_image_url="https://img.lovepik.com/free-template/20210106/bg/d4e0b6dd02a87.png_detail.jpg!detail808"
+    )
+    text_message = TextSendMessage(text="生日快樂！希望你有個美好的一天 🎉🎂")
+    reply_message = [image_message, text_message]
         
     else:
         reply_message = TextSendMessage(text="抱歉，沒有東西。")
 
-    line_bot_api.reply_message(event.reply_token,reply)
+    line_bot_api.reply_message(event.reply_token, reply_message)
 # 主程式
 import os
 if __name__ == "__main__":
