@@ -229,7 +229,7 @@ def handle_message(event):
                             "type": "bubble",
                             "hero": {
                                 "type": "image",
-                                "url": "https://d3l76hx23vw40a.cloudfront.net/recipe/whk101-005b.jpg"
+                                "url": "https://d3l76hx23vw40a.cloudfront.net/recipe/whk101-005b.jpg",
                                 "aspectRatio": "20:13",
                                 "aspectMode": "cover"
                             },
